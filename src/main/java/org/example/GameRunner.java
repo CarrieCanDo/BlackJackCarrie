@@ -17,6 +17,7 @@ public class GameRunner {
 
         Player player = new Player(100); // Starting balance
         Player dealer = new Player(0); // Dealer doesn't have a balance
+        int defaultBet = 10; // Default bet amount per play
 
         boolean playing = true;
         while (playing) {
@@ -64,13 +65,13 @@ public class GameRunner {
             int dealerValue = dealer.calculateHandValue();
             if (playerValue > 21) {
                 System.out.println("You lose!");
-                player.updateBalance(-10);
+                player.updateBalance(-defaultBet);
             } else if (dealerValue > 21 || playerValue > dealerValue) {
                 System.out.println("You win!");
-                player.updateBalance(10);
+                player.updateBalance(defaultBet * 2); // Double the bet back
             } else if (playerValue < dealerValue) {
                 System.out.println("You lose!");
-                player.updateBalance(-10);
+                player.updateBalance(-defaultBet);
             } else {
                 System.out.println("It's a tie!");
             }
